@@ -1,0 +1,1 @@
+"E:\Program Files (x86)\微信web开发者工具\cli.bat" cloud functions deploy --e cloud1-3gwqnswp2f5b64e7 --n invite_server --r --project "E:\Program2021\guo\2000\test1" --report_first --report
