@@ -1,0 +1,211 @@
+<page-meta root-font-size="system" />
+<view class="page" data-weui-theme="{{light}}" data-weui-mode="{{}}">
+
+<modal show="true" timer = "{{my_timer}}" height='60%' bindcancel="modalCancel" bindconfirm='modalConfirm' catchtouchmove="ture">
+  <text>\n</text>
+    <view class="weui-form__text-area">
+      <h2 class="weui-form__title">填写须知</h2>
+      <view aria-role="heading" class="page__title"></view>
+      <view class="page__desc">1、科研交叉的意义：每一个科研人员都有自己的知识结构和研究领域，但一个人研究领域并不总是能覆盖有价值的研究课题中的所有需求。本系统致力于匹配不同的科研人员形成科研交叉团队，共同申报各级课题，服务基础研究和应用型研究，最终产生有现实意义的科研成果。</view>
+      <view class="page__desc">2、我们会对您的个人信息进行保密。将摘取您填写的拟解决/研究的科研问题、拟申报课题类型、拟在课题中担任的角色、预期的科研伙伴信息进行科研交叉团队匹配工作。</view>
+      <view class="page__desc">3、本系统最终解释权在法律范围内归浙江大学健康产业创新研究中心所有。</view>
+    </view>
+</modal>
+  <view class="weui-form">
+    <view class="weui-form__text-area">
+      <h2 class="weui-form__title">科研交叉匹配系统</h2>
+    </view>
+    <view class="weui-form__control-area">
+      <view class="weui-cells__group weui-cells__group_form">
+        <view class="weui-cells__title">带*号的为必填项</view>
+        <view class="weui-cells weui-cells_form">
+          <view class="weui-cell weui-cell_active">
+            <view class="weui-cell__hd"><label class="weui-label">您的姓名*</label></view>
+            <input class="weui-input" data-key="name" bindinput="oninput" placeholder="请输入姓名" placeholder-class="weui-input__placeholder" />
+          </view>
+
+          <view class="weui-cell weui-cell_active" style="margin-top: 10px;">
+            <view class="weui-cell__hd"><label class="weui-label">所在单位*</label></view>
+            <radio-group class="weui-cell__hd" style="font-size: 15px;" bindchange="checkboxChange2">
+              <label class="checkbox" wx:for="{{hospitals}}" wx:key="index">
+                <view class="tui-menu-list">
+                  <radio style="margin-top: 10%;" value="{{item.name}}" checked="{{item.checked}}" />{{item.name}}
+                </view>
+              </label>
+              <label class="checkbox">
+                <view class="tui-menu-list">
+                  <radio style="margin-top: 10%;" value="其他" />其他
+                </view>
+              </label>
+            </radio-group>
+          </view>
+
+          <view wx:if="{{flagH}}"  style="margin-top: 10px; margin-left: 130px;">
+            <input class="weui-input" bindinput="oninputH" placeholder="输入其他单位" placeholder-class="weui-input__placeholder" />
+          </view>
+
+          <view class="weui-cell weui-cell_active" style="margin-top: 10px;">
+            <view class="weui-cell__hd"><label class="weui-label">学历*</label></view>
+            <radio-group class="weui-cell__hd" style="font-size: 15px;" bindchange="checkboxChange_edu">
+              <label class="checkbox" wx:for="{{Education}}" wx:key="index">
+                <view class="tui-menu-list">
+                  <radio style="margin-top: 10%;" value="{{item.name}}" checked="{{item.checked}}" />{{item.name}}
+                </view>
+              </label>
+            </radio-group>
+          </view>
+
+          <view class="weui-cell weui-cell_active" style="margin-top: 10px;">
+            <view class="weui-cell__hd"><label class="weui-label">职称*</label></view>
+            <radio-group class="weui-cell__bd" style="font-size: 15px;" bindchange="checkboxChange_rank">
+              <label class="checkbox" wx:for="{{Rank}}" wx:key="index">
+                <view class="tui-menu-list">
+                  <radio style="margin-top: 10%;" value="{{item.name}}" checked="{{item.checked}}" />{{item.name}}
+                </view>
+              </label>
+            </radio-group>
+          </view>
+          
+
+          <view class="weui-cell weui-cell_active" wx:for="{{info.form_personal}}" wx:key="index">
+            <view class="weui-cell__hd"><label class="weui-label">{{item.name}}</label></view>
+            <view class="weui-cell__bd">
+              <input wx:if="{{item.size <= 20}}" class="weui-input" data-key="{{index}}" bindinput="oninput" placeholder="{{item.place}}" placeholder-class="weui-input__placeholder" />
+              <textarea wx:else class="weui-textarea" data-key="{{index}}" bindinput="oninput" placeholder="{{item.place}}" placeholder-class="weui-input__placeholder" rows="3"></textarea>
+            </view>
+          </view>
+
+          <view class="weui-cell weui-cell_active">
+            <view class="weui-cell__hd"><label class="weui-label">个人&科研成果简介*</label></view>
+            <textarea class="weui-input" style="height: 120px;" data-key="sci_fruit" bindinput="oninput" placeholder="请介绍您的个人经历和科研成果，包括但不限于担任负责人或参与的课题、发表的论文等。可通过填写或上传文件的形式填写" placeholder-class="weui-input__placeholder" rows="3" />
+          </view>
+
+          <view class="weui-cell" style="margin-bottom: 10%;">
+            <view style="margin-left: 30%;">
+              <view class="weui-cell__bd">
+                <view class="weui-uploader">
+                  <view class="weui-uploader__hd">
+                    <view class="weui-uploader__tips">
+                      如使用手机填写仅能上传微信聊天记录（含文件传输助手）中的文件，如使用电脑上传仅能上传本地文件
+                    </view>
+                  </view>
+                  <view class="weui-uploader__file" wx:for="{{sci_files}}" wx:key="index">
+                    
+                    <image class="weui-uploader__img" src="cloud://cloud1-9gmfv4nxddc06c06.636c-cloud1-9gmfv4nxddc06c06-1308645417/file_pic.png" mode="aspectFill" />
+                    <view class="weui-uploader__tips">
+                      {{item.name}}
+                    </view>
+                 </view>
+                  <view class="weui-uploader__bd">
+                    <view class="weui-uploader__input-box">
+                      <view aria-role="button" aria-label="上传" class="weui-uploader__input" bindtap="uploadSci"></view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        
+
+
+
+
+
+          <view class="weui-cell weui-cell_active" wx:for="{{info.form_p0}}" wx:key="index">
+            <view class="weui-cell__hd"><label class="weui-label">{{item.name}}</label></view>
+            <view class="weui-cell__bd">
+              <input wx:if="{{item.size <= 20}}" class="weui-input" data-key="{{index}}" bindinput="oninput" placeholder="{{item.place}}" placeholder-class="weui-input__placeholder" />
+              <textarea wx:else class="weui-textarea" data-key="{{index}}" bindinput="oninput" placeholder="{{item.place}}" placeholder-class="weui-input__placeholder" rows="3"></textarea>
+            </view>
+          </view>
+
+
+          <view class="weui-cell weui-cell_active" style="margin-top: 10px;">
+            <view class="weui-cell__hd"><label class="weui-label">拟在课题中担任的角色（如上题填了这题必填）</label></view>
+            <radio-group class="weui-cell__hd" style="font-size: 15px;" bindchange="checkboxChange3">
+              <label class="checkbox" wx:for="{{roles}}" wx:key="index">
+                <view class="tui-menu-list">
+                  <radio style="margin-top: 10%;" value="{{item.name}}" checked="{{item.checked}}" />{{item.name}}
+                </view>
+              </label>
+              <label class="checkbox">
+                <view class="tui-menu-list">
+                  <radio style="margin-top: 10%;" value="其他" />其他
+                </view>
+              </label>
+            </radio-group>
+          </view>
+
+          <view wx:if="{{flagR}}"  style="margin-top: 10px; margin-left: 130px;">
+            <input class="weui-input" bindinput="oninputR" placeholder="请填写您预期在课题中承担的角色" placeholder-class="weui-input__placeholder" />
+          </view>
+
+          <view class="weui-cell weui-cell_active" wx:for="{{info.form_p1}}" wx:key="index">
+            <view class="weui-cell__hd"><label class="weui-label">{{item.name}}</label></view>
+            <view class="weui-cell__bd">
+              <input wx:if="{{item.size <= 20}}" class="weui-input" data-key="{{index}}" bindinput="oninput" placeholder="{{item.place}}" placeholder-class="weui-input__placeholder" />
+              <textarea wx:else class="weui-textarea" data-key="{{index}}" bindinput="oninput" placeholder="{{item.place}}" placeholder-class="weui-input__placeholder" rows="3"></textarea>
+            </view>
+          </view>
+
+ 
+
+
+          <view class="weui-cell" style="margin-bottom: 20%;">
+            <view aria-role="option" class="weui-uploader__overview">
+              <view class="weui-uploader__title">文件上传</view>
+            </view>
+            <view style="margin-left: 24%;">
+              <view class="weui-cell__bd">
+                <view class="weui-uploader">
+                  <view class="weui-uploader__hd">
+                    <view class="weui-uploader__tips">
+                      可上传相关文档。包括但不限于您的个人简历、发表的文章、拟研究科研问题的相关材料等。
+                      使用手机填写仅能上传微信聊天记录（含文件传输助手）中的文件，如使用电脑上传仅能上传本地文件
+                    </view>
+                  </view>
+                  <view class="weui-uploader__file" wx:for="{{pdfFiles}}" wx:key="index">
+                    
+                    <image class="weui-uploader__img" src="cloud://cloud1-9gmfv4nxddc06c06.636c-cloud1-9gmfv4nxddc06c06-1308645417/file_pic.png" mode="aspectFill" />
+                    <view class="weui-uploader__tips">
+                      {{item.name}}
+                    </view>
+                 </view>
+                  <view class="weui-uploader__bd">
+                    <view class="weui-uploader__input-box">
+                      <view aria-role="button" aria-label="上传" class="weui-uploader__input" bindtap="uploadPDF"></view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+
+          <view class="weui-cell weui-cell_active" wx:for="{{info.form_p2}}" wx:key="index">
+            <view class="weui-cell__hd"><label class="weui-label">{{item.name}}</label></view>
+            <view class="weui-cell__bd">
+              <input wx:if="{{item.size <= 20}}" class="weui-input" data-key="{{index}}" bindinput="oninput" placeholder="{{item.place}}" placeholder-class="weui-input__placeholder" />
+              <textarea wx:else class="weui-textarea" data-key="{{index}}" bindinput="oninput" placeholder="{{item.place}}" placeholder-class="weui-input__placeholder" rows="3"></textarea>
+            </view>
+          </view>
+
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{submit_f}}" class = "weui-form__opr-area">
+      <button style="width: 50%;background-color: #7c9ff7;" bindtap="submit" aria-role="button" class="weui-btn weui-btn_primary">提交</button>
+    </view>
+
+    <view class="weui-form__extra-area">
+      <view class="weui-footer">
+        <view class="weui-footer__links">
+          <navigator url="javascript:" class="weui-footer__link"></navigator>
+        </view>
+        <view class="weui-footer__text">Copyright © 2021-2022</view>
+      </view>
+    </view>
+  </view>
+
+  
+</view>

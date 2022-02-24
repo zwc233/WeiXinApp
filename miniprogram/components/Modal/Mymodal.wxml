@@ -1,0 +1,12 @@
+<view class='mask' bindanimationstart="set_timer" wx:if='{{show}}'>
+  <view class='modal-content' style='height:{{height}}'>
+  <view class='modal-header'>{{title}}</view>
+    <scroll-view scroll-y class='main-content'>
+      <slot></slot>
+    </scroll-view>
+    <view class='modal-btn-wrapper'>
+      <view wx:if="{{timer > 0}}" class='confirm-btn' style="color:gray;" >我已知晓({{timer}})</view>
+      <view wx:else class='confirm-btn' style="color:rgb(0, 0, 0);" bindtap='confirm'>我已知晓</view>
+    </view>
+  </view>
+</view>

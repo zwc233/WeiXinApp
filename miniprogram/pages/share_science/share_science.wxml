@@ -1,0 +1,43 @@
+<page-meta root-font-size="system"></page-meta>
+<view class="page" data-weui-theme="light" data-weui-mode="">
+  <view class="page__hd">
+    <text>\n</text>
+    <view aria-role="heading" aria-level="1" class="page__title">全部问卷</view>
+    <view class="page__desc">当前问卷数量：{{all_item.length}}</view>
+  </view>
+  <view class="page__bd page__bd_spacing">
+    <view class="kind-list">
+      <block wx:for="{{all_item}}" wx:key="index">
+        <view class="kind-list__item">
+          <view id="{{index}}" class="weui-flex kind-list__item-hd {{selectedFlag[index] ? 'kind-list__item-hd_show' : ''}}" bindtap="changeToggle">
+            <view class="weui-flex__item" style="font-size:12px;">所在单位：{{item.hospital}}</view>
+            <view style="margin-left: 5px;" class="weui-flex__item" style="font-size:12px;">工作/研究领域：{{item.sci_realm}}</view>
+          </view>
+          <view aria-hidden="{{selectedFlag[index] ? 'false' : 'true'}}" class="kind-list__item-bd {{selectedFlag[index] ? 'kind-list__item-bd_show' : ''}}">
+            <view class="weui-cells {{selectedFlag[index] ? 'weui-cells_show' : ''}}">
+              <view class="weui-panel weui-panel_access">
+                <view class="weui-panel__hd">问卷信息</view>
+                <view class="weui-panel__bd">
+
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">拟解决/研究科研问题</text>
+                    <view class="weui-media-box__desc">{{item.sci_problem}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">预期的科研伙伴</text>
+                    <view class="weui-media-box__desc">{{item.sci_partener}}</view>
+                  </view>
+
+                </view>
+              </view>
+
+
+            </view>
+          </view>
+        </view>
+
+      </block>
+    </view>
+  </view>
+
+</view>

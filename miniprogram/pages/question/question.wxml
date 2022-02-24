@@ -1,0 +1,159 @@
+<page-meta root-font-size="system" />
+<view class="page" data-weui-theme="{{light}}" data-weui-mode="{{}}">
+
+<modal show="true" timer = "{{my_timer}}" height='60%' bindcancel="modalCancel" bindconfirm='modalConfirm' catchtouchmove="true">
+  <text>\n</text>
+    <view class="weui-form__text-area">
+      <h2 class="weui-form__title">填写须知</h2>
+      <view class="page__desc">1、痛点征集的意义：医护人员每天直面医疗场景，能够直观且深刻的感受到医疗场景中可能存在的问题。部分问题的解决可以提升医疗水平、医疗效率、患者体验，降低医护人员工作强度等。提出真正有价值的问题是医疗科技成果能够真正实现产业化的第一步，也是最重要的一步。感谢您抽出宝贵的时间填写您发现的痛点，感谢您为医疗科技成果转化做出贡献的意愿。</view>
+      <view class="page__desc">2、痛点定义：在您日常的临床工作中，您认为对您产生困扰的问题或值得被改进的针对某问题的解决方案。</view>
+      <view class="page__desc">3、痛点征集后浙江大学健康产业创新研究中心-医疗健康科技成果商业化孵化平台将对痛点进行多维度评估。评估过程中，可能涉及到将痛点信息隐名后分享给合作专家进行评价，合作专家对痛点信息均负有保密义务。合作针对有价值的痛点，将组织多学科交叉团队进行解决方案设计并推动商业化转化。</view>
+      <view class="page__desc">4、针对有价值的痛点设计的解决方案所涉及的专利，第一发明人为痛点提出人所有。如不同医护人员提出了相同痛点，本平台将第一时间根据实际情况与痛点提出人沟通协商。</view>
+      <view class="page__desc">5、由该痛点衍生出的转化收益由痛点提出人（所在单位）、解决方案研发团队、商业化运营团队根据贡献共同分享。</view>
+      <view class="page__desc">6、本系统最终解释权在法律范围内归浙江大学健康产业创新研究中心所有。</view>
+    </view>
+</modal>
+  <view class="weui-form" disableScroll="true">
+    <view class="weui-form__text-area">
+      <h2 class="weui-form__title">医护人员临床痛点征集系统</h2>
+    </view>
+    <view class="weui-form__control-area">
+      <view class="weui-cells__group weui-cells__group_form">
+        <view class="weui-cells__title">带*号的为必填项</view>
+        <view class="weui-cells weui-cells_form">
+          <view class="weui-cell weui-cell_active">
+            <view class="weui-cell__hd"><label class="weui-label">您的姓名*</label></view>
+            <input class="weui-input" data-key="name" bindinput="oninput" placeholder="请输入姓名" placeholder-class="weui-input__placeholder" />
+          </view>
+
+          <view class="weui-cell weui-cell_active" style="margin-top: 10px;">
+            <view style="margin-right: 8%;">所在医院*</view>
+            <radio-group style="font-size: 15px;" bindchange="checkboxChange2">
+              <label class="checkbox" wx:for="{{hospitals}}" wx:key="index">
+                <view class="tui-menu-list">
+                  <radio style="margin-top: 10%;" value="{{item.name}}" checked="{{item.checked}}" />{{item.name}}
+                </view>
+              </label>
+              <label class="checkbox">
+                <view class="tui-menu-list">
+                  <radio style="margin-top: 10%;" value="其他" />其他
+                </view>
+              </label>
+            </radio-group>
+          </view>
+
+          <view wx:if="{{flagH}}"  style="margin-top: 10px; margin-left: 130px;">
+            <input class="weui-input" bindinput="oninputH" placeholder="输入其他医院" placeholder-class="weui-input__placeholder" />
+          </view>
+
+          <view class="weui-cell weui-cell_active" wx:for="{{info.form_personal}}" wx:key="index">
+            <view class="weui-cell__hd"><label class="weui-label">{{item.name}}</label></view>
+            <view class="weui-cell__bd">
+              <input wx:if="{{item.size <= 20}}" class="weui-input" data-key="{{index}}" bindinput="oninput" placeholder="{{item.place}}" placeholder-class="weui-input__placeholder" />
+              <textarea wx:else class="weui-textarea" data-key="{{index}}" bindinput="oninput" placeholder="{{item.place}}" placeholder-class="weui-input__placeholder" rows="3"></textarea>
+            </view>
+          </view>
+
+          <view class="weui-cell weui-cell_active" style="margin-top: 10px;">
+            <view style="margin-right: 6.5%;">痛点频率*</view>
+            <radio-group bindchange="checkboxChange">
+              <label class="checkbox" wx:for="{{items}}" wx:key="index">
+                <view class="tui-menu-list">
+                  <radio value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+                </view>
+              </label>
+            </radio-group>
+          </view>
+
+          <view class="weui-cell">
+            <view aria-role="option" class="weui-uploader__overview">
+                      <view class="weui-uploader__title">痛点图片</view>
+            </view>
+            <view style="margin-left: 17%;">
+
+              <view class="weui-cell__bd">
+                <view class="weui-uploader">
+                  <view class="weui-uploader__hd">
+                    <view class="weui-uploader__tips">
+                      可拍摄痛点场景的图片并上传以清晰描述痛点，没有可忽略
+                    </view>
+                  </view>
+                  <view class="weui-uploader__file" bindtap="previewImage" wx:for="{{imgSrc}}" wx:key="index">
+                    <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                  </view>
+                  <view class="weui-uploader__bd">
+                    <view class="weui-uploader__input-box">
+                      <view aria-role="button" aria-label="上传" class="weui-uploader__input" bindtap="uploadImg"></view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+
+          <view class="weui-cell weui-cell_active" wx:for="{{info.form_solution}}" wx:key="index">
+            <view class="weui-cell__hd"><label class="weui-label">{{item.name}}</label></view>
+            <view class="weui-cell__bd">
+              <input wx:if="{{item.size <= 20}}" class="weui-input" data-key="{{index}}" bindinput="oninput" placeholder="{{item.place}}" placeholder-class="weui-input__placeholder" />
+              <textarea wx:else class="weui-textarea" data-key="{{index}}" bindinput="oninput" placeholder="{{item.place}}" placeholder-class="weui-input__placeholder" rows="3"></textarea>
+            </view>
+          </view>
+
+          <view class="weui-cell" style="margin-bottom: 20%;">
+            <view aria-role="option" class="weui-uploader__overview">
+              <view class="weui-uploader__title">文件上传</view>
+            </view>
+            <view style="margin-left: 24%;">
+              <view class="weui-cell__bd">
+                <view class="weui-uploader">
+                  <view class="weui-uploader__hd">
+                    <view class="weui-uploader__tips">
+                      可上传相关文档。包括但不限于与本痛点相关的学术材料、专利全文等。如使用手机填写仅能上传微信聊天记录（含文件传输助手）中的文件，如使用电脑仅能上传本地文件
+
+                    </view>
+                  </view>
+                  <view class="weui-uploader__file" wx:for="{{pdfFiles}}" wx:key="index">
+                    
+                    <image class="weui-uploader__img" src="cloud://cloud1-9gmfv4nxddc06c06.636c-cloud1-9gmfv4nxddc06c06-1308645417/file_pic.png" mode="aspectFill" />
+                    <view class="weui-uploader__tips">
+                      {{item.name}}
+                    </view>
+                 </view>
+                  <view class="weui-uploader__bd">
+                    <view class="weui-uploader__input-box">
+                      <view aria-role="button" aria-label="上传" class="weui-uploader__input" bindtap="uploadPDF"></view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+
+          <view class="weui-cell weui-cell_active" wx:for="{{info.form_others}}" wx:key="index">
+            <view class="weui-cell__hd"><label class="weui-label">{{item.name}}</label></view>
+            <view class="weui-cell__bd">
+              <input wx:if="{{item.size <= 20}}" class="weui-input" data-key="{{index}}" bindinput="oninput" placeholder="{{item.place}}" placeholder-class="weui-input__placeholder" />
+              <textarea wx:else class="weui-textarea" data-key="{{index}}" bindinput="oninput" placeholder="{{item.place}}" placeholder-class="weui-input__placeholder" rows="3"></textarea>
+            </view>
+          </view>
+
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{submit_f}}" class="weui-form__opr-area">
+      <button style="width: 50%;background-color: #7c9ff7;" bindtap="submit" aria-role="button" class="weui-btn weui-btn_primary">提交</button>
+    </view>
+
+    <view class="weui-form__extra-area">
+      <view class="weui-footer">
+        <view class="weui-footer__links">
+          <navigator url="javascript:" class="weui-footer__link"></navigator>
+        </view>
+        <view class="weui-footer__text">Copyright © 2021-2022</view>
+      </view>
+    </view>
+  </view>
+
+  
+</view>

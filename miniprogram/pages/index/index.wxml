@@ -1,65 +1,68 @@
-<view class="model" wx:if="{{noserver}}">
-  <image src="../../images/main_s.png"></image>
-  <view class="no_tips">当前小程序无法支持宽屏设备，非常抱歉！</view>
-</view>
-<view bindtouchstart="movepage" bindtouchend="movepage" class="container" wx:else>
-  <view class="model" wx:if="{{spage==0||epage==0}}">
-    <image src="../../images/top_s.png"></image>
-    <view class="top_black"></view>
-    <view class="top_title">{{info.start.title}}</view>
-    <view class="top_local">{{info.start.local}}</view>
-    <view class="top_time">{{info.start.time}}</view>
-    <view class="top_hold">{{info.start.hold}}</view>
-  </view>
-  <view class="model {{spage!=1?(spage<epage?'model_show':''):(spage<epage?'':'model_hide')}}" wx:if="{{spage==1||epage==1}}">
-    <image src="../../images/main_s.png"></image>
-    <view class="main_title">诚挚邀请</view>
-    <view class="main_entil">INVITATIONLETTER</view>
-    <view class="invite_title">{{info.invite.title}}</view>
-    <view class="invite_text">{{info.invite.text}}</view>
-  </view>
-  <view class="model {{spage!=2?(spage<epage?'model_show':''):(spage<epage?'':'model_hide')}}" wx:if="{{spage==2||epage==2}}">
-    <image src="../../images/main_s.png"></image>
-    <view class="main_title">会议流程</view>
-    <view class="main_entil">MEETINGFLOW</view>
-    <view class="metting_model">
-      <view class="line"></view>
-      <view class="item" wx:for="{{info.meeting}}" wx:key="index">
-        <view class="item_text">{{item.time}}</view>
-        <image src="../../images/point.svg"></image>
-        <view class="item_text">{{item.text}}</view>
-      </view>
-    </view>
-  </view>
-  <view class="model {{spage!=3?(spage<epage?'model_show':''):(spage<epage?'':'model_hide')}}" wx:if="{{spage==3||epage==3}}">
-    <image src="../../images/main_s.png"></image>
-    <view class="main_title">活动地址</view>
-    <view class="main_entil">ADDRESS</view>
-    <map class="map" latitude="{{info.address.point[0]}}" longitude="{{info.address.point[1]}}" enable-3D="true" enable-building="true" markers="{{[info.address.marker]}}" show-location="true" catchregionchange="changeno"></map>
-    <view class="map_line"></view>
-    <view class="address_item">
-      <image src="../../images/map.svg"></image>
-      <view>{{info.address.local}}</view>
-    </view>
-    <view class="address_item">
-      <image src="../../images/time.svg"></image>
-      <view>{{info.address.time}}</view>
-    </view>
-    <view class="address_item">
-      <image src="../../images/tel.svg"></image>
-      <view>{{info.address.tel}}</view>
-    </view>
-  </view>
-  <view class="model {{spage!=4?(spage<epage?'model_show':''):(spage<epage?'':'model_hide')}}" wx:if="{{spage==4||epage==4}}">
-    <image src="../../images/main_s.png"></image>
-    <view class="main_title">会议报名</view>
-    <view class="main_entil">REGISTRATION</view>
-    <view class="form" bindtouchstart="changeno" bindtouchend="changeno" wx:if="{{status==0}}">
-      <view class="form_item" wx:for="{{info.form}}" wx:key="index">
-        <view>{{item.name}}</view>
-        <input bindinput="oninput" data-key="{{index}}" placeholder="{{item.place}}" placeholder-class="place" cursor-spacing="20"/>
-      </view>
-      <button bindtap="submit">提交</button>
-    </view>
-  </view>
+<page-meta root-font-size="system" />
+<view style="background-image: url(https://636c-cloud1-9gmfv4nxddc06c06-1308645417.tcb.qcloud.la/main_n.png?sign=9660535f8c9c792759fd127afe04f273&t=1640888044);background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;" class="page" data-weui-theme="light" data-weui-mode="">
+	<text>\n</text>
+	<text>\n</text>
+	<text>\n</text>
+	<text>\n</text>
+	<image style="margin-left: 10%; width: 80%; height: 75px;" src="../../images/window_white.png" />
+	<text>\n</text>
+	<text>\n</text>
+	<text>\n</text>
+	<text>\n</text>
+	<text>\n</text>
+
+	<view class="weui-form__opr-area">
+		<view  aria-role="button" class="weui-btn weui-btn_primary btn1" bindtap="onTian">
+			<image class='btnImg' src='../../images/icon1.png'></image>
+			<view class="view_text">科研&医护人员入口</view>
+		</view>
+	</view>
+	<text>\n</text>
+	<view class="weui-form__opr-area">
+		<view aria-role="button" class="weui-btn weui-btn_primary btn1" bindtap="onTianScience">
+			<image class='btnImg' src='../../images/icon2.png'></image>
+			<view class="view_text">企业&创业者入口</view>
+		</view>
+	</view>
+	<text>\n</text>
+	<text>\n</text>
+	<text>\n</text>
+	<view class="weui-form__opr-area">
+		<view style="margin-left: 80%; margin-top: 90%; width: 40%;" aria-role="button" class="weui-cell_active weui-cell_link" hover-class="weui-cell_active" bindtap="onSee">管理员登录</view>
+	</view>
+	<text>\n</text>
+
+	<modal show="{{show_login}}" timer="{{my_timer}}" height='40%' bindcancel="modalCancel" bindconfirm='modalConfirm' catchtouchmove="ture">
+		<text>\n</text>
+		<view class="weui-form__text-area">
+			<view class="weui-form__control-area">
+				<view class="weui-cells__title">管理员登录</view>
+				<view class="weui-cells__group weui-cells__group_form">
+					<view class="weui-cells weui-cells_form">
+						<view class="weui-cell weui-cell_active">
+							<view class="weui-cell__hd"><label class="weui-label">账号</label></view>
+							<view class="weui-cell__bd">
+								<input class="weui-input" bindinput="oninput_user" placeholder="请填写账号" placeholder-class="weui-input__placeholder" />
+							</view>
+						</view>
+						<view class="weui-cell weui-cell_active">
+							<view class="weui-cell__hd">
+								<label class="weui-label">密码</label>
+							</view>
+							<view class="weui-cell__bd">
+								<input type="password" bindinput="oninput_pwd" class="weui-input" placeholder="请填写密码" placeholder-class="weui-input__placeholder" />
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+
+		</view>
+	</modal>
+
+
+	<!-- <view class="weui-form__opr-area">
+		<view aria-role="button" class="weui-btn weui-btn_primary" bindtap="onWord">生成word</view>
+	</view> -->
+
 </view>

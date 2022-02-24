@@ -6,6 +6,7 @@
         "ignore": []
     },
     "setting": {
+        "resizable": true,
         "urlCheck": true,
         "es6": true,
         "enhance": true,
@@ -14,7 +15,7 @@
         "minified": true,
         "newFeature": false,
         "coverView": true,
-        "nodeModules": false,
+        "nodeModules": true,
         "autoAudits": false,
         "showShadowRootInWxmlPanel": true,
         "scopeDataCheck": false,
@@ -33,18 +34,19 @@
             "outputPath": ""
         },
         "enableEngineNative": false,
-        "useIsolateContext": true,
+        "useIsolateContext": false,
         "userConfirmedBundleSwitch": false,
         "packNpmManually": false,
         "packNpmRelationList": [],
         "minifyWXSS": true,
+        "disableUseStrict": false,
+        "minifyWXML": true,
         "showES6CompileOption": false,
-        "useSummerCompiler": false,
-        "minifyWXML": true
+        "useCompilerPlugins": false
     },
     "compileType": "miniprogram",
     "libVersion": "2.19.1",
-    "appid": "wxbb9ba7d09e724dc6",
+    "appid": "wx58698f58957f34f7",
     "projectname": "test1",
     "debugOptions": {
         "hidedInDevtools": []
@@ -55,6 +57,7 @@
         "servePath": ""
     },
     "isGameTourist": false,
+    "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
     "condition": {
         "search": {
             "list": []

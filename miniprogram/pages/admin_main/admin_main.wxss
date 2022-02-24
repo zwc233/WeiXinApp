@@ -1,0 +1,29 @@
+/* pages/admin_main/admin_main.wxss */
+.btn1 {
+    width: 96%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    padding: 26rpx 48rpx;
+    background-color: #7c9ff7;
+    font-size: 100%;
+}
+
+.btnImg {
+    margin-top: 0rpx;
+    margin-left: 0%;
+    margin-right: 38rpx;
+    width: 66rpx;
+    height: 66rpx;
+}
+
+.btn1::after {
+    border-radius: 98rpx;
+    border: 0;
+}
+
+.view_text {
+    margin-top: 3px;
+    font-size: 15px;
+    font-family: myfont;
+}

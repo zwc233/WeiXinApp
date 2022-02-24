@@ -1,0 +1,90 @@
+<page-meta root-font-size="system"></page-meta>
+<view class="page" data-weui-theme="light" data-weui-mode="">
+  <view class="page__hd">
+    <text>\n</text>
+    <view aria-role="heading" aria-level="1" class="page__title">全部问卷</view>
+    <view class="page__desc">当前问卷数量：{{all_item.length}}</view>
+  </view>
+
+
+  <view class="page__bd page__bd_spacing">
+    <view  class="kind-list">
+      <block wx:for="{{all_item}}" wx:key="index">
+        <view class="kind-list__item">
+          <view id="{{index}}" class="weui-flex kind-list__item-hd {{selectedFlag[index] ? 'kind-list__item-hd_show' : ''}}" bindtap="changeToggle">
+            <view class="weui-flex__item"  style="font-size:12px;">企业名称：{{item.name}}</view>
+            <view style="margin-left: 5px;" class="weui-flex__item" style="font-size:12px;">需求类型：{{item.Need_type}}</view>
+
+            <checkbox id="{{index}}" bindtouchend="checkboxChange" data-key="{{index}}" data-key="{{index}}" checked="{{item.checked}}" />
+          </view>
+          <view aria-hidden="{{selectedFlag[index] ? 'false' : 'true'}}" class="kind-list__item-bd {{selectedFlag[index] ? 'kind-list__item-bd_show' : ''}}">
+            <view class="weui-cells {{selectedFlag[index] ? 'weui-cells_show' : ''}}">
+              <view class="weui-panel weui-panel_access">
+                <view class="weui-panel__hd">问卷信息</view>
+                <view class="weui-panel__bd">
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">企业名称</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.name}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">地址</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.place}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">介绍</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.intro}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">规模</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.scale}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">所处行业</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.industry}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">产品或服务种类</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.product}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">需求类型</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.Need_type}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">合作单位/个人要求</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.coop}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">预算</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.price}}</view>
+                  </view>
+                  <view wx:if="{{item.fileID !== ''}}" class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">文件</text>
+                    <navigator wx:for="{{item.fileID}}" wx:for-index="index1" wx:key="d" url="./" switchTab="download" class="weui-cell weui-cell_active weui-cell_link" hover-class="weui-cell_active">
+                      <view wx:if="{{ isImg[index][index1] === false }}" bindtap="download" id="{{[index,index1]}}" class="weui-cell__bd">{{ fileName[index][index1] }} 文件下载</view>
+                    </navigator>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">联系人</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.contact_man}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">联系方式</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.contact_way}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">邮箱</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.email}}</view>
+                  </view>
+                </view>
+              </view>
+
+            </view>
+          </view>
+        </view>
+
+      </block>
+    </view>
+  </view>
+
+</view>

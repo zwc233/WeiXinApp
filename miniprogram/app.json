@@ -1,11 +1,30 @@
 {
-	"pages": [
-		"pages/index/index"
-	],
-	"window": {
-		"navigationBarTextStyle": "black",
-		"navigationStyle": "custom"
-	},
-	"style": "v2",
-	"sitemapLocation": "sitemap.json"
+    "pages": [
+        "pages/index/index",
+        "pages/admin/admin",
+        "pages/share_page/share_page",
+        "pages/question/question",
+        "pages/science/science",
+        "pages/admin_hurt/admin_hurt",
+        "pages/admin_science/admin_science",
+        "pages/share_science/share_science",
+        "pages/turn_need/turn_need",
+        "pages/admin_turn_need/admin_turn_need",
+        "pages/share_turn_need/share_turn_need",
+        "pages/enterprise/enterprise",
+        "pages/admin_enterprise/admin_enterprise",
+        "pages/startup/startup",
+        "pages/admin_startup/admin_startup",
+        "pages/science_hospital_entry/science_hospital_entry",
+        "pages/enterprise_startup_entry/enterprise_startup_entry",
+        "pages/admin_main/admin_main",
+        "pages/user_create/user_create",
+        "pages/user_manage/user_manage"
+    ],
+    "window": {
+        "navigationBarTextStyle": "black",
+        "navigationStyle": "custom"
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json"
 }

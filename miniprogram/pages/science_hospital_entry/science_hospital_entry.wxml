@@ -1,0 +1,41 @@
+<page-meta root-font-size="system" />
+<view style="background-image: url(https://636c-cloud1-9gmfv4nxddc06c06-1308645417.tcb.qcloud.la/main_n.png?sign=9660535f8c9c792759fd127afe04f273&t=1640888044);background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;" class="page" data-weui-theme="light" data-weui-mode="">
+
+	<text>\n</text>
+	<text>\n</text>
+	<text>\n</text>
+	<text>\n</text>
+	<image style="margin-left: 10%; width: 80%; height: 75px;" src="../../images/window_white.png" />
+	<text>\n</text>
+	<text>\n</text>
+	<text>\n</text>
+	<text>\n</text>
+	<text>\n</text>
+	<view class="weui-form__opr-area">
+		<view aria-role="button"  class="weui-btn weui-btn_primary btn1" bindtap="onTian">
+			<image class='btnImg' src='../../images/icon1.png'></image>
+			<view class="view_text">医护人员临床痛点征集系统</view>
+		</view>
+	</view>
+
+	<text>\n</text>
+
+	<view class="weui-form__opr-area">
+		<view aria-role="button"  class="weui-btn weui-btn_primary btn1" bindtap="onTianScience">
+			<image class='btnImg' src='../../images/icon2.png'></image>
+			<view class="view_text">科研交叉匹配系统</view>
+			</view>
+	</view>
+	<text>\n</text>
+
+	<view class="weui-form__opr-area">
+		<view aria-role="button"  class="weui-btn weui-btn_primary btn1" bindtap="onTianTurn" >
+			<image class='btnImg' src='../../images/icon3.png'></image>
+			<view class="view_text">转化需求征集系统</view>
+			</view>
+	</view>
+	<!-- <view class="weui-form__opr-area">
+		<view aria-role="button" class="weui-btn weui-btn_primary" bindtap="onWord">生成word</view>
+	</view> -->
+
+</view>

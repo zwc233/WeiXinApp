@@ -1,0 +1,41 @@
+<page-meta root-font-size="system" />
+<view class="page" data-weui-theme="light" data-weui-mode="">
+	<text>\n</text>
+	<text>\n</text>
+	<text>\n</text>
+	<text>\n</text>
+	<view class="weui-form__text-area">
+		<h2 class="weui-form__title">总管理员</h2>
+	</view>
+	<text>\n</text>
+
+	<view class="weui-cells__title">
+		<text style="margin-left:10%;font-size: large;">您好，浙大孵化平台</text>
+		<text>\n</text>
+		<text>\n</text>
+		<text>\n</text>
+		<text>\n</text>
+	</view>
+
+	<view class="weui-form__opr-area">
+		<view style="width: 70%;background-color: #7c9ff7;" aria-role="button" class="weui-btn weui-btn_primary" bindtap="onTian">
+		管理全问卷
+		</view>
+	</view>
+	<text>\n</text>
+		<text>\n</text>
+	<view class="weui-form__opr-area">
+		<view style="width: 70%;background-color: #7c9ff7;" aria-role="button" class="weui-btn weui-btn_primary" bindtap="CreateUser">
+		创建新管理员
+		</view>
+	</view>
+	<text>\n</text>
+		<text>\n</text>
+	<view class="weui-form__opr-area">
+		<view style="width: 70%;background-color: #7c9ff7;" aria-role="button" class="weui-btn weui-btn_primary" bindtap="ManageUser">
+		管理员管理
+		</view>
+	</view>
+
+
+</view>

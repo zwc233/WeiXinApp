@@ -1,0 +1,200 @@
+<page-meta root-font-size="system"></page-meta>
+<view class="page" data-weui-theme="light" data-weui-mode="">
+  <!-- <modal show="true" timer="{{3}}" height='60%' bindcancel="modalCancel" bindconfirm='modalConfirm' catchtouchmove="true">
+    <text>\n</text>
+    <view class="weui-form__text-area">
+      <h2 class="weui-form__title">评价须知</h2>
+      <view class="page__desc">痛点征集后浙江大学健康产业创新研究中心-医疗健康科技成果商业化孵化平台将对痛点进行多维度评估。评估过程中，可能涉及到将痛点信息隐名后分享给合作专家进行评价，合作专家对痛点信息均负有保密义务。合作针对有价值的痛点，将组织多学科交叉团队进行解决方案设计并推动商业化转化</view>
+    </view>
+  </modal> -->
+
+
+
+  <view wx:if="{{flag == false}}" class="page__hd">
+    <text>\n</text>
+    <view class="page__desc">请您点击以下痛点，并完成痛点下方的评估内容，完成后请点击提交</view>
+    <view class="page__desc">当前痛点数量：{{all_item.length}}</view>
+    <view class="page__desc">痛点条目</view>
+  </view>
+  <view wx:if="{{flag == true}}">
+    <text>\n</text>
+    <text>\n</text>
+    <text>\n</text>
+    <text>\n</text>
+  </view>
+  <view class="page__bd page__bd_spacing">
+    <view class="kind-list">
+      <block wx:for="{{all_item}}" wx:key="index">
+        <view class="kind-list__item">
+          <view id="{{index}}" class="weui-flex kind-list__item-hd {{selectedFlag[index] ? 'kind-list__item-hd_show' : ''}}" bindtap="changeToggle">
+            <view class="weui-flex__item" style="font-size:12px;">医院：{{item.hospital}}</view>
+            <view style="margin-left: 5px;" class="weui-flex__item" style="font-size:12px;">科室：{{item.room}}</view>
+            <view style="margin-left: 5px;" class="weui-flex__item" style="font-size:12px;">痛点信息：{{item.hurt_info}}</view>
+          </view>
+          <view aria-hidden="{{selectedFlag[index] ? 'false' : 'true'}}" class="kind-list__item-bd {{selectedFlag[index] ? 'kind-list__item-bd_show' : ''}}">
+            <view class="weui-cells {{selectedFlag[index] ? 'weui-cells_show' : ''}}">
+              <view class="weui-panel weui-panel_access">
+                <view class="weui-panel__hd">问卷信息</view>
+                <view class="weui-panel__bd">
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">科室</text>
+                    <view class="weui-media-box__desc">{{item.room}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">痛点名称</text>
+                    <view class="weui-media-box__desc">{{item.hurt_info}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">痛点场景描述</text>
+                    <view class="weui-media-box__desc">{{item.relate_people}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">痛点涉及人群</text>
+                    <view class="weui-media-box__desc">{{item.relate_place}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">痛点发生频率</text>
+                    <view class="weui-media-box__desc">{{item.checkArr[0]}}</view>
+                  </view>
+                  <view wx:if="{{item.fileID !== ''}}" class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">痛点图片</text>
+                    <image bindtap="previewImage" wx:for="{{item.fileID}}" wx:key="index" style="width: 80%; margin: 5% 10% 5%;" id="{{item}}" src="{{item}}"></image>
+                  </view>
+                </view>
+              </view>
+
+              <view class="weui-panel weui-panel_access" wx:if="{{flag == true}}">
+                <view class="weui-panel__hd">评价</view>
+                <view class="weui-media-box weui-media-box_text" aria-role="option" wx:for="{{item.evaluation}}" wx:key="index">
+                  <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">
+                    第{{index+1}}条
+                  </view>
+                  <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">
+                    痛点真实性：{{item.Reality}}
+                  </view>
+                  <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">
+                    现有解决方案：{{item.Solution}}
+                  </view>
+                  <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">
+                    现有解决方案描述：{{item.describe}}
+                  </view>
+                  <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">
+                    痛点覆盖的场景：{{item.Scene}}
+                  </view>
+                  <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">
+                    痛点前景：{{item.Prospect}}
+                  </view>
+                  <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">
+                    综合评价：{{item.comp}}
+                  </view>
+                </view>
+
+              </view>
+
+
+
+              <view wx:if="{{flag == false}}">
+
+                <view class="weui-panel weui-panel_access">
+                  <view style="font-size: large;" class="weui-panel__hd">评价</view>
+                </view>
+
+
+
+                <view class="weui-cell weui-cell_active">
+                  <view class="weui-cell__hd"><label class="weui-label">评价者姓名</label></view>
+
+                  <view style="margin-left: 5%;" class="weui-input" aria-role="option">
+                    <input bindinput="oninput_name" data-key="{{index}}" placeholder="请填写您的姓名" />
+                  </view>
+                </view>
+
+                <view class="weui-cell weui-cell_active">
+                  <view class="weui-cell__hd"><label class="weui-label">评价者所在单位</label></view>
+
+                  <view style="margin-left: 5%;" class="weui-input" aria-role="option">
+                    <input bindinput="oninput_place" data-key="{{index}}" placeholder="请填写您所在单位" />
+                  </view>
+                </view>
+
+                <view class="weui-cell weui-cell_active" style="margin-top: 10px;">
+                  <view class="weui-cell__hd"><label class="weui-label">痛点真实性</label></view>
+                  <radio-group class="weui-cell__hd" style="font-size: 15px; margin-left: 5%;" data-key="{{index}}" bindchange="checkboxChange_reality">
+                    <label class="checkbox" wx:for="{{Reality}}" wx:key="index">
+                      <view class="tui-menu-list">
+                        <radio style="margin-top: 10%;" value="{{item.name}}" checked="{{item.checked}}" />{{item.name}}
+                      </view>
+                    </label>
+                  </radio-group>
+                </view>
+
+                <view class="weui-cell weui-cell_active" style="margin-top: 10px;">
+                  <view class="weui-cell__hd"><label class="weui-label">现有解决方案</label></view>
+                  <radio-group class="weui-cell__hd" style="font-size: 15px; margin-left: 5%;" data-key="{{index}}" bindchange="checkboxChange_solution">
+                    <label class="checkbox" wx:for="{{Solution}}" wx:key="index">
+                      <view class="tui-menu-list">
+                        <radio style="margin-top: 10%;" value="{{item.name}}" checked="{{item.checked}}" />{{item.name}}
+                      </view>
+                    </label>
+                  </radio-group>
+                </view>
+
+                <view class="weui-cell weui-cell_active">
+                  <view class="weui-cell__hd"><label class="weui-label">现有解决方案描述</label></view>
+                  <textarea class="weui-input" style="height: 80px; margin-left: 5%;" bindinput="oninput_ds" data-key="{{index}}" placeholder="请您描述现有的解决方案，并阐述其可能存在的问题。不了解可不填" />
+                </view>
+
+                <view class="weui-cell weui-cell_active" style="margin-top: 10px;">
+                  <view class="weui-cell__hd"><label class="weui-label">痛点覆盖的场景</label></view>
+                  <radio-group class="weui-cell__hd" style="font-size: 15px; margin-left: 5%;" data-key="{{index}}" bindchange="checkboxChange_scene">
+                    <label class="checkbox" wx:for="{{Scene}}" wx:key="index">
+                      <view class="tui-menu-list">
+                        <radio style="margin-top: 10%;" value="{{item.name}}" checked="{{item.checked}}" />{{item.name}}
+                      </view>
+                    </label>
+                  </radio-group>
+                </view>
+
+                <view class="weui-cell weui-cell_active" style="margin-top: 10px;">
+                  <view class="weui-cell__hd"><label class="weui-label">痛点出现的频率</label></view>
+                  <radio-group class="weui-cell__hd" style="font-size: 15px; margin-left: 5%;" data-key="{{index}}" bindchange="checkboxChange_frequency">
+                    <label class="checkbox" wx:for="{{Frequency}}" wx:key="index">
+                      <view class="tui-menu-list">
+                        <radio style="margin-top: 10%;" value="{{item.name}}" checked="{{item.checked}}" />{{item.name}}
+                      </view>
+                    </label>
+                  </radio-group>
+                </view>
+
+                <view class="weui-cell weui-cell_active" style="margin-top: 10px;">
+                  <view class="weui-cell__hd"><label class="weui-label">您认为解决该痛点的市场前景如何？或可以理解为，医院或患者愿意为解决该痛点买单吗</label></view>
+                  <radio-group class="weui-cell__hd" style="font-size: 15px; margin-left: 5%;" data-key="{{index}}" bindchange="checkboxChange_prospect">
+                    <label class="checkbox" wx:for="{{Prospect}}" wx:key="index">
+                      <view class="tui-menu-list">
+                        <radio style="margin-top: 10%;" value="{{item.name}}" checked="{{item.checked}}" />{{item.name}}
+                      </view>
+                    </label>
+                  </radio-group>
+                </view>
+
+                <view class="weui-cell weui-cell_active">
+                  <view class="weui-cell__hd"><label class="weui-label">综合评价</label></view>
+                  <textarea class="weui-input" style="height: 120px; margin-left: 5%;" row="3" bindinput="oninput_eva" data-key="{{index}}" placeholder="请综合评价该场景。包括但不限于对其看好或不看好的主观描述、现有的产品情况等" />
+                </view>
+
+              </view>
+
+
+            </view>
+          </view>
+        </view>
+
+      </block>
+    </view>
+  </view>
+  <view class="page__bd" wx:if="{{flag == false && submit_f == true}}">
+    <view class="weui-btn-area">
+      <button aria-role="button" style="background-color: #7c9ff7;" bindtap="submit" class="weui-btn weui-btn_primary">上传评价</button>
+    </view>
+  </view>
+</view>

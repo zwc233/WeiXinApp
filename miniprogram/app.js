@@ -1,5 +1,32 @@
 App({
+  share_data:[],
   flag: false,
+
+  check_email(e){
+        // console.log(e)
+    　　var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"); //正则表达式
+    　　var obj = e; //要验证的对象
+    　　if(obj === "" || obj === null){ //输入不能为空
+    　　　　return false;
+    　　}else if(!reg.test(obj)){ //正则验证不通过，格式不对
+    　　　　return false;
+    　　}else{
+    　　　　return true;
+    　　}
+  },
+
+  // 加载字体
+  loadFont() {
+    //英文
+    wx.loadFontFace({
+      family: 'myfont', //设置一个font-family使用的名字
+      source: 'url("https://636c-cloud1-9gmfv4nxddc06c06-1308645417.tcb.qcloud.la/NotoSansHans-Bold.otf?sign=71ee2f6717e9b08066f2ec7b3f529cfa&t=1640884244")', //字体资源的地址
+      success: console.log,
+      fail: console.log
+    })
+  },
+
+
   async onLaunch (e) {
     this.initcloud()
   },
@@ -58,15 +85,11 @@ App({
         return res.result
       } else { // 否则
         wx.hideLoading()
-        wx.showModal({ // 提示一下
-          content: '函数服务没有支持该操作！',
-          showCancel: false
-        })
       }
     } catch (e) { // 网络问题出现
       let flag = e.toString()
       flag = flag.indexOf('FunctionName')==-1?flag:'请在cloudfunctions文件夹中invite_server上右键，创建部署云端安装依赖，然后再次体验'
-      console.error('【云函数调用失败】', flag)
+      // console.error('【云函数调用失败】', flag)
       wx.hideLoading()
       wx.showModal({
         content: flag, // 此提示可以在正式时改为 "网络服务异常，请确认网络重新尝试！"

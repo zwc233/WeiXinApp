@@ -1,0 +1,42 @@
+<page-meta root-font-size="system" />
+<view class="page" data-weui-theme="light" data-weui-mode="">
+	<text>\n</text>
+	<text>\n</text>
+	<text>\n</text>
+	<text>\n</text>
+	<view class="weui-cells__title">
+		<text style="margin-left:10%;font-size: large;">您好，{{user}}</text>
+		<text>\n</text>
+		<text>\n</text>
+		<text>\n</text>
+		<text>\n</text>
+	</view>
+	<view class="weui-form__opr-area">
+		<view aria-role="button" style="background-color: #7c9ff7;" class="weui-btn weui-btn_primary" bindtap="onSee">医护人员临床痛点征集系统</view>
+	</view>
+
+	<text>\n</text>
+	<text>\n</text>
+	<view class="weui-form__opr-area">
+		<view aria-role="button" style="background-color: #7c9ff7;" class="weui-btn weui-btn_primary" bindtap="onSeeScience">科研交叉团队匹配系统</view>
+	</view>
+
+	<text>\n</text>
+	<text>\n</text>
+	<view class="weui-form__opr-area">
+		<view aria-role="button" style="background-color: #7c9ff7;" class="weui-btn weui-btn_primary" bindtap="onSeeTurn">转化需求征集系统</view>
+	</view>
+
+	<text>\n</text>
+	<text>\n</text>
+	<view wx:if="{{is_admin}}" class="weui-form__opr-area">
+		<view aria-role="button" style="background-color: #7c9ff7;" class="weui-btn weui-btn_primary" bindtap="onSeeEnter">企业需求征集系统</view>
+	</view>
+	<text>\n</text>
+	<text>\n</text>
+	<view wx:if="{{is_admin}}" class="weui-form__opr-area">
+		<view aria-role="button" style="background-color: #7c9ff7;" class="weui-btn weui-btn_primary" bindtap="onSeeStartup">创业者征集系统</view>
+	</view>
+	<text>\n</text>
+
+</view>

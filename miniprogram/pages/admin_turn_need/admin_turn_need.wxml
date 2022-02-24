@@ -1,0 +1,165 @@
+<page-meta root-font-size="system"></page-meta>
+<view class="page" data-weui-theme="light" data-weui-mode="">
+  <view class="page__hd">
+    <text>\n</text>
+    <view aria-role="heading" aria-level="1" class="page__title">全部转化需求</view>
+    <view class="page__desc">当前转化需求数量：{{all_item.length}}</view>
+  </view>
+
+  <view wx:if="{{is_admin}}" class="weui-form__text-area">
+      <h2>筛选单位</h2>
+    </view>
+    <view wx:if="{{is_admin}}" class="weui-cell weui-cell_active" style="margin-top: 10px;">
+      <checkbox-group bindchange="checkboxChange_shai">
+        <label class="checkbox" wx:for="{{hospitals}}" wx:key="index">
+          <view class="tui-menu-list">
+            <checkbox style="font-size: 5px;" value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+          </view>
+        </label>
+      </checkbox-group>
+    </view>
+
+
+  <view class="page__bd page__bd_spacing">
+    <view class="kind-list">
+      <block wx:for="{{all_item}}" wx:key="index">
+        <view wx:if="{{show_data[index]}}" class="kind-list__item">
+          <view id="{{index}}" class="weui-flex kind-list__item-hd {{selectedFlag[index] ? 'kind-list__item-hd_show' : ''}}" bindtap="changeToggle">
+            <view class="weui-flex__item"  style="font-size:12px;">所在单位：{{item.hospital}}</view>
+            <view style="margin-left: 5px;" class="weui-flex__item" style="font-size:12px;">成果拟解决的问题：{{item.sci_problem}}</view>
+
+            <checkbox id="{{index}}" bindtouchend="checkboxChange" data-key="{{index}}" data-key="{{index}}" checked="{{item.checked}}" />
+          </view>
+          <view aria-hidden="{{selectedFlag[index] ? 'false' : 'true'}}" class="kind-list__item-bd {{selectedFlag[index] ? 'kind-list__item-bd_show' : ''}}">
+            <view class="weui-cells {{selectedFlag[index] ? 'weui-cells_show' : ''}}">
+              <view class="weui-panel weui-panel_access">
+                <view class="weui-panel__hd">问卷信息</view>
+                <view class="weui-panel__bd">
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">姓名</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.name}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">所在单位</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.hospital}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">工作/研究领域</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.sci_realm}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">成果拟解决的问题</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.sci_problem}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">成果描述</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.sci_describe}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">成果的先进性</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.sci_advance}}</view>
+                  </view>
+                  
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">成果所处阶段</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.Phase}}</view>
+                  </view>
+
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">转化需求</text>
+                    <view wx:for="{{item.Turn_need}}" wx:key="index" style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item}}</view>
+                  </view>
+
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">转化需求描述</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.sci_need}}</view>
+                  </view>
+
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">转化过程中您可提供的资源</text>
+                    <view wx:for="{{item.Resource}}" wx:key="index" style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item}}</view>
+                  </view>
+
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">可提供的资源描述</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.sci_resource}}</view>
+                  </view>
+
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">预期转化的方式</text>
+                    <view wx:for="{{item.Turnway}}" wx:key="index" style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item}}</view>
+                  </view>
+
+
+                  <view wx:if="{{item.fileID !== ''}}" class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">文件</text>
+                    <navigator wx:for="{{item.fileID}}" wx:for-index="index1" wx:key="d" url="./" switchTab="download" class="weui-cell weui-cell_active weui-cell_link" hover-class="weui-cell_active">
+                      <view wx:if="{{ isImg[index][index1] === false }}" bindtap="download" id="{{[index,index1]}}" class="weui-cell__bd">{{ fileName[index][index1] }} 文件下载</view>
+                    </navigator>
+                  </view>
+
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">联系方式</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.contact_way}}</view>
+                  </view>
+
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">邮箱</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.email}}</view>
+                  </view>
+
+                </view>
+              </view>
+
+
+              <view class="weui-panel weui-panel_access">
+                <view class="weui-panel__hd">评价</view>
+                <view class="weui-media-box weui-media-box_text" aria-role="option" wx:for="{{item.evaluation}}" wx:key="index">
+                  <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">
+                    第{{index+1}}条
+                  </view>
+                  <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">
+                    评价者姓名：{{item.name}}
+                  </view>
+                  <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">
+                    评价者所在单位：{{item.place}}
+                  </view>
+                  <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">
+                    成果解决的问题是否有必要被解决：{{item.Problem}}
+                  </view>
+                  <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">
+                    该解决方案与现有解决方案比是否存在优势：{{item.Solution}}
+                  </view>
+                  <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">
+                    该成果转化的市场前景如何：{{item.Prospect}}
+                  </view>
+                  <!-- <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">
+                    成果估价：{{item.price}}
+                  </view> -->
+                  <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">
+                    综合评价：{{item.comp}}
+                  </view>
+                </view>
+
+              </view>
+
+            </view>
+          </view>
+        </view>
+
+      </block>
+    </view>
+  </view>
+
+
+  <view class="weui-btn-area">
+      <button style="background-color: #7c9ff7;" aria-role="button" id="0" open-type="share" class="weui-btn weui-btn_primary">邀请评价</button>
+    </view>
+
+    <view class="weui-btn-area">
+      <button style="background-color: #7c9ff7;" aria-role="button" id="1" open-type="share" class="weui-btn weui-btn_primary">分享评价</button>
+    </view>
+  
+
+
+</view>

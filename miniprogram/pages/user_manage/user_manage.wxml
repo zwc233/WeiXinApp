@@ -1,0 +1,59 @@
+<page-meta root-font-size="system" />
+<view class="page" data-weui-theme="light" data-weui-mode="">
+	<text>\n</text>
+	<text>\n</text>
+	<text>\n</text>
+	<text>\n</text>
+	<view class="weui-form__text-area">
+		<h2 class="weui-form__title">总管理员</h2>
+	</view>
+	<text>\n</text>
+
+	<view class="weui-cells__title">
+		<text style="margin-left:10%;font-size: large;">您好，浙大孵化平台</text>
+		<text>\n</text>
+		<text>\n</text>
+	</view>
+
+	<view class="weui-form__control-area">
+		<view class="weui-cells__title">当前用户</view>
+		<view class="weui-cells__group weui-cells__group_form">
+
+			<view class="weui-cells weui-cells_radio">
+				<radio-group class="radio-group" bindchange="UserChoose">
+
+					<label class="weui-cell weui-cell_active weui-check__label">
+						<view class="weui-cell__bd">
+							<view>用户名</view>
+						</view>
+						<view class="weui-cell__bd">
+							<view>密码</view>
+						</view>
+						<view class="weui-cell__bd">
+							<view>单位</view>
+						</view>
+					</label>
+					<label class="weui-cell weui-cell_active weui-check__label" wx:for="{{show_user}}" wx:key="name">
+						<view class="weui-cell__bd">
+							<view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.name}}</view>
+						</view>
+						<view class="weui-cell__bd">
+							<view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.pwd}}</view>
+						</view>
+						<view class="weui-cell__bd">
+							<view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.hospital}}</view>
+						</view>
+						<view class="weui-cell__ft">
+							<radio class="weui-check" value="{{item._id}}" checked="{{item.checked}}" />
+							<i class="weui-icon-checked"></i>
+						</view>
+					</label>
+				</radio-group>
+			</view>
+		</view>
+	</view>
+    <view class="weui-form__opr-area">
+		<view style="width: 50%;background-color: #7c9ff7;" aria-role="button" class="weui-btn weui-btn_primary" bindtap="onDelete">删除新管理员</view>
+	</view>
+
+</view>

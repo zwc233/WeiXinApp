@@ -1,0 +1,157 @@
+<page-meta root-font-size="system"></page-meta>
+<view class="page" data-weui-theme="light" data-weui-mode="">
+  <!-- <modal show="true" timer="{{3}}" height='60%' bindcancel="modalCancel" bindconfirm='modalConfirm' catchtouchmove="ture">
+        <text>\n</text>
+        <view class="weui-form__text-area">
+            <h2 class="weui-form__title">评价须知</h2>
+            <view class="page__desc">我们将对您填写的成果进行评估，评估过程中，可能涉及到将痛点信息隐名后分享给合作专家进行评价，合作专家对痛点信息均负有保密义务。评估完成后，我们将与您联系，沟通下一步的转化方案</view>
+        </view>
+    </modal> -->
+  <view class="page__hd">
+    <text>\n</text>
+    <view aria-role="heading" aria-level="1" class="page__title">全部成果</view>
+    <view class="page__desc">当前问卷数量：{{all_item.length}}</view>
+  </view>
+  <view class="page__bd page__bd_spacing">
+    <view class="kind-list">
+      <block wx:for="{{all_item}}" wx:key="index">
+        <view class="kind-list__item">
+          <view id="{{index}}" class="weui-flex kind-list__item-hd {{selectedFlag[index] ? 'kind-list__item-hd_show' : ''}}" bindtap="changeToggle">
+            <view class="weui-flex__item"  style="font-size:12px;">所在单位：{{item.hospital}}</view>
+            <view style="margin-left: 5px;" class="weui-flex__item" style="font-size:12px;">成果拟解决的问题：{{item.sci_problem}}</view>
+            <checkbox id="{{index}}" bindtouchend="checkboxChange" data-key="{{index}}" data-key="{{index}}" checked="{{item.checked}}" />
+          </view>
+          <view aria-hidden="{{selectedFlag[index] ? 'false' : 'true'}}" class="kind-list__item-bd {{selectedFlag[index] ? 'kind-list__item-bd_show' : ''}}">
+            <view class="weui-cells {{selectedFlag[index] ? 'weui-cells_show' : ''}}">
+              <view class="weui-panel weui-panel_access">
+                <view class="weui-panel__hd">问卷信息</view>
+                <view class="weui-panel__bd">
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">成果拟解决的问题</text>
+                    <view class="weui-media-box__desc">{{item.sci_problem}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">成果描述</text>
+                    <view class="weui-media-box__desc">{{item.sci_describe}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">成果的先进性</text>
+                    <view class="weui-media-box__desc">{{item.sci_advance}}</view>
+                  </view>
+                </view>
+              </view>
+
+              <view class="weui-panel weui-panel_access" wx:if="{{flag}}">
+                <view class="weui-panel__hd">评价</view>
+                <view class="weui-media-box weui-media-box_text" aria-role="option" wx:for="{{item.evaluation}}" wx:key="index">
+                  <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">
+                    第{{index+1}}条
+                  </view>
+                  <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">
+                    成果解决的问题是否有必要被解决：{{item.Problem}}
+                  </view>
+                  <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">
+                    该解决方案与现有解决方案比是否存在优势：{{item.Solution}}
+                  </view>
+                  <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">
+                    该成果转化的市场前景如何：{{item.Prospect}}
+                  </view>
+                  <!-- <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">
+                    成果估价：{{item.price}}
+                  </view> -->
+                  <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">
+                    综合评价：{{item.comp}}
+                  </view>
+                </view>
+
+              </view>
+
+
+
+              <view wx:if="{{flag == false}}">
+
+              <view class="weui-panel weui-panel_access">
+                <view style="font-size: large;" class="weui-panel__hd">评价</view>
+              </view>
+
+              <view class="weui-cell weui-cell_active">
+                <view class="weui-cell__hd"><label class="weui-label">评价者姓名</label></view>
+
+                <view style="margin-left: 5%;" class="weui-input" aria-role="option">
+                  <input bindinput="oninput_name" data-key="{{index}}" placeholder="请填写您的姓名" />
+                </view>
+              </view>
+
+              <view class="weui-cell weui-cell_active">
+                <view class="weui-cell__hd"><label class="weui-label">评价者所在单位</label></view>
+
+                <view style="margin-left: 5%;" class="weui-input" aria-role="option">
+                  <input bindinput="oninput_place" data-key="{{index}}" placeholder="请填写您所在单位" />
+                </view>
+              </view>
+
+              <view class="weui-cell weui-cell_active" style="margin-top: 10px;">
+                <view class="weui-cell__hd"><label class="weui-label">1、成果解决的问题是否有必要被解决</label></view>
+                <radio-group class="weui-cell__hd" style="font-size: 15px;margin-left: 5%;" data-key="{{index}}" bindchange="checkboxChange_problem">
+                  <label class="checkbox" wx:for="{{Problem}}" wx:key="index">
+                    <view class="tui-menu-list">
+                      <radio style="margin-top: 10%;" value="{{item.name}}" checked="{{item.checked}}" />{{item.name}}
+                    </view>
+                  </label>
+                </radio-group>
+              </view>
+
+              <view class="weui-cell weui-cell_active" style="margin-top: 10px;">
+                <view class="weui-cell__hd"><label class="weui-label">2、该解决方案与现有解决方案比是否存在优势</label></view>
+                <radio-group class="weui-cell__hd" style="font-size: 15px; margin-left: 5%;" data-key="{{index}}" bindchange="checkboxChange_solution">
+                  <label class="checkbox" wx:for="{{Solution}}" wx:key="index">
+                    <view class="tui-menu-list">
+                      <radio style="margin-top: 10%;" value="{{item.name}}" checked="{{item.checked}}" />{{item.name}}
+                    </view>
+                  </label>
+                </radio-group>
+              </view>
+
+
+              <view class="weui-cell weui-cell_active" style="margin-top: 10px;">
+                <view class="weui-cell__hd"><label class="weui-label">3、您认为该成果转化的市场前景如何</label></view>
+                <radio-group class="weui-cell__hd" style="font-size: 15px; margin-left: 5%;" data-key="{{index}}" bindchange="checkboxChange_prospect">
+                  <label class="checkbox" wx:for="{{Prospect}}" wx:key="index">
+                    <view class="tui-menu-list">
+                      <radio style="margin-top: 10%;" value="{{item.name}}" checked="{{item.checked}}" />{{item.name}}
+                    </view>
+                  </label>
+                </radio-group>
+              </view>
+
+              <!-- <view class="weui-cell weui-cell_active">
+                <view class="weui-cell__hd"><label class="weui-label">您是否可以为该成果估价？如能，您认为该成果值得的转化价格为：</label></view>
+
+                <view class="weui-input" style="margin-left: 5%;" aria-role="option">
+                  <input type="number" style="height: 80px;" bindinput="oninput_price" data-key="{{index}}" placeholder="只能填数字" />
+                </view>
+              </view> -->
+
+
+
+              <view class="weui-cell weui-cell_active">
+                <view class="weui-cell__hd"><label class="weui-label">综合评价</label></view>
+                  <textarea  class="weui-input" style="height: 80px; margin-left: 5%;" bindinput="oninput_comp" data-key="{{index}}" placeholder="请综合评价该成果。包括但不限于对其看好或不看好的主观描述、现有的产品情况等" />
+              </view>
+
+            </view>
+
+              </view>
+
+            </view>
+          </view>
+
+      </block>
+    </view>
+  </view>
+  <view class="page__bd" wx:if="{{flag == false && submit_f == true}}">
+    <view class="weui-btn-area">
+      <button style="background-color: #7c9ff7;" aria-role="button" bindtap="submit" class="weui-btn weui-btn_primary">上传评价</button>
+    </view>
+  </view>
+</view>

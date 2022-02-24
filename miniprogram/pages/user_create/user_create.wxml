@@ -1,0 +1,65 @@
+<page-meta root-font-size="system" />
+<view class="page" data-weui-theme="light" data-weui-mode="">
+	<text>\n</text>
+	<text>\n</text>
+	<text>\n</text>
+	<text>\n</text>
+	<view class="weui-form__text-area">
+		<h2 class="weui-form__title">总管理员</h2>
+	</view>
+	<text>\n</text>
+
+	<view class="weui-cells__title">
+		<text style="margin-left:10%;font-size: large;">您好，浙大孵化平台</text>
+		<text>\n</text>
+		<text>\n</text>
+	</view>
+
+	<view class="weui-form__control-area">
+		<view class="weui-cells__title">创建子账户</view>
+		<view class="weui-cells__group weui-cells__group_form">
+			<view class="weui-cells weui-cells_form">
+				<view class="weui-cell weui-cell_active">
+					<view class="weui-cell__hd"><label class="weui-label">账号</label></view>
+					<view class="weui-cell__bd">
+						<input class="weui-input" bindinput="oninput_user" placeholder="请填写账号" placeholder-class="weui-input__placeholder" />
+					</view>
+				</view>
+				<view class="weui-cell weui-cell_active">
+					<view class="weui-cell__hd">
+						<label class="weui-label">密码</label>
+					</view>
+					<view class="weui-cell__bd">
+						<input bindinput="oninput_pwd" class="weui-input" placeholder="请填写密码" placeholder-class="weui-input__placeholder" />
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="weui-form__control-area">
+		<view class="weui-cells__title">选择合作单位</view>
+		<view class="weui-cells__group weui-cells__group_form">
+			<view class="weui-cells weui-cells_radio">
+				<radio-group class="radio-group" bindchange="radioChange">
+					<label class="weui-cell weui-cell_active weui-check__label" wx:for="{{hospitals}}" wx:key="name">
+						<view class="weui-cell__bd">
+							<view>{{item.value}}</view>
+						</view>
+						<view class="weui-cell__ft">
+							<radio class="weui-check" value="{{item.name}}" checked="{{item.checked}}" />
+							<i class="weui-icon-checked"></i>
+						</view>
+					</label>
+				</radio-group>
+			</view>
+		</view>
+	</view>
+	<view class="weui-form__opr-area">
+		<button style="width: 50%;background-color: #7c9ff7;" aria-role="button" class="weui-btn weui-btn_primary" bindtap="{{buttonClicked?'onSubmit':''}}">创建新管理员</button>
+	</view>
+	<text>\n</text>
+	<!-- <view class="weui-form__opr-area">
+		<view aria-role="button" class="weui-btn weui-btn_primary" bindtap="onWord">生成word</view>
+	</view> -->
+
+</view>

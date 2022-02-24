@@ -1,0 +1,15 @@
+{
+  "name": "test1",
+  "version": "1.0.0",
+  "description": "## 项目介绍 本项目是一个实用的邀请函应用，可以DIY自己的信息，支持报名和审核。",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "weui-miniprogram": "^1.2.2"
+  }
+}

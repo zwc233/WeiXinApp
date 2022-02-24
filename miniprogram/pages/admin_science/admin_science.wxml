@@ -1,0 +1,113 @@
+<page-meta root-font-size="system"></page-meta>
+<view class="page" data-weui-theme="light" data-weui-mode="">
+  <view class="page__hd">
+    <text>\n</text>
+    <view aria-role="heading" aria-level="1" class="page__title">全部科研需求数量</view>
+    <view class="page__desc">当前科研需求数量：{{all_item.length}}</view>
+  </view>
+
+  <view wx:if="{{is_admin}}" class="weui-form__text-area">
+      <h2>筛选单位</h2>
+    </view>
+    <view wx:if="{{is_admin}}" class="weui-cell weui-cell_active" style="margin-top: 10px;">
+      <checkbox-group bindchange="checkboxChange_shai">
+        <label class="checkbox" wx:for="{{hospitals}}" wx:key="index">
+          <view class="tui-menu-list">
+            <checkbox style="font-size: 5px;" value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+          </view>
+        </label>
+      </checkbox-group>
+    </view>
+
+
+  <view class="page__bd page__bd_spacing">
+    <view  class="kind-list">
+      <block wx:for="{{all_item}}" wx:key="index">
+        <view wx:if="{{show_data[index]}}" class="kind-list__item">
+          <view id="{{index}}" class="weui-flex kind-list__item-hd {{selectedFlag[index] ? 'kind-list__item-hd_show' : ''}}" bindtap="changeToggle">
+            <view class="weui-flex__item"  style="font-size:12px;">所在单位：{{item.hospital}}</view>
+            <view style="margin-left: 5px;" class="weui-flex__item" style="font-size:12px;">工作/研究领域：{{item.sci_realm}}</view>
+
+            <checkbox id="{{index}}" bindtouchend="checkboxChange" data-key="{{index}}" data-key="{{index}}" checked="{{item.checked}}" />
+          </view>
+          <view aria-hidden="{{selectedFlag[index] ? 'false' : 'true'}}" class="kind-list__item-bd {{selectedFlag[index] ? 'kind-list__item-bd_show' : ''}}">
+            <view class="weui-cells {{selectedFlag[index] ? 'weui-cells_show' : ''}}">
+              <view class="weui-panel weui-panel_access">
+                <view class="weui-panel__hd">问卷信息</view>
+                <view class="weui-panel__bd">
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">姓名</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.name}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">所在单位</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.hospital}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">学历</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.Education}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">职称</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.Rank}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">工作/研究领域</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.sci_realm}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">个人&科研成果简介</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.sci_fruit}}</view>
+                    <navigator wx:for="{{item.fileID}}" wx:for-index="index1" wx:for-item="item1" wx:key="d" url="./" switchTab="download" class="weui-cell_link" hover-class="weui-cell_active">
+                      <view wx:if="{{ index1>=item.divide }}" bindtap="download" id="{{[index,index1]}}" class="weui-cell__bd">{{ fileName[index][index1] }} 文件下载</view>
+                    </navigator>
+                  </view>
+
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">拟解决/研究科研问题</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.sci_problem}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">拟解决/研究科研问题的关键词</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.keyword}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">拟申报课题类型</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.sci_type}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">预期的科研伙伴</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.sci_partener}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">预期的科研机构</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.sci_place}}</view>
+                  </view>
+                  <view class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">其他</text>
+                    <view style="font-size: 14px; color:#b2b2b2; font-weight: 300;">{{item.sci_others}}</view>
+                  </view>
+
+                  <view wx:if="{{item.fileID !== ''}}" class="weui-media-box weui-media-box_text" aria-role="option">
+                    <text class="weui-media-box__title">文件</text>
+                    <navigator wx:for="{{item.fileID}}" wx:for-index="index1" wx:for-item="item1" wx:key="d" url="./" switchTab="download" class="" hover-class="weui-cell_active">
+                      <view wx:if="{{ index1<item.divide }}" bindtap="download" id="{{[index,index1]}}" class="weui-cell weui-cell_active weui-cell_link weui-cell__bd">{{ fileName[index][index1] }} 文件下载</view>
+                    </navigator>
+                  </view>
+                  
+                </view>
+              </view>
+
+            </view>
+          </view>
+        </view>
+
+      </block>
+    </view>
+  </view>
+  <view class="page__bd">
+    <view class="weui-btn-area">
+      <button style="background-color: #7c9ff7;" aria-role="button" open-type="share" class="weui-btn weui-btn_primary">分享</button>
+    </view>
+  </view>
+</view>
